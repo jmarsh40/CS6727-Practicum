@@ -6,8 +6,17 @@ package com.gatech.stig.deploy;
 
 /**
  *
- * @author Ragnarak
+ * @author jmarsh40
  */
-public class STIG {
-    private static String title; // title of the benchmark
+abstract public class STIG {
+    private String title; // title of the benchmark
+    private boolean enabled; // toggle to enable/disable benchmark
+    
+    /* Return STIG info */
+    abstract public String getInfo();
+    
+    /* Toggle STIG */
+    public void enable(boolean en){
+        enabled = en;
+    }
 }

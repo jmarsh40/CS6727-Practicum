@@ -6,26 +6,32 @@ package com.gatech.stig.deploy;
 
 /**
  *
- * @author Ragnarak
+ * @author jmarsh40
  */
 public class Switch extends Device {
-    private static STIG[] sList; // list of STIGs for device
-    private static ACL[] aclList; // list of ACLs for switch
-    
+   
     /* Constructor to load STIGs */
     public Switch() {
+        loadStigs();
         /* TBD */
     }
+    
+    /* Return the device's list of STIGs */
+    public String getStigs(){
+            /* TBD */
+            return "";
+    }
+    
     /* Configure the switch STIGs */
-    public static void editSwitch() {
+    public void editDevice() {
         /* TBD */
     }
-    /* Load the switch specific STIGs */
-    public static void loadStigs() {
+    /* Load the switch-specific STIGs */
+    public void loadStigs() {
         /* TBD */
     }
     /* Print STIG information */
-    public static void printStigs() {
+    public void printStigs() {
         /* TBD */
     }
 }

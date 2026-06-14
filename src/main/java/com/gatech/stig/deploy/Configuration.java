@@ -6,22 +6,24 @@ package com.gatech.stig.deploy;
 
 /**
  *
- * @author Ragnarak
+ * @author jmarsh40
  */
 public class Configuration {
-    public static String name = "New Configuration"; // configuration name
-    private static Device[] dList; // list of devices in configuration
+    public String name = "New Configuration"; // configuration name
+    private Device[] dList; // list of devices in configuration
     
     /* Edit the configuration */
-    public static void editConfig() {
+    public void editConfig() {
         /* TBD */
     }
     
-    public static void saveConfig() {
+    /* Save the configuration */
+    public void saveConfig() {
         /* TBD */
     }
     
-    public static void deployConfig() {
+    /* Deploy the configuration */
+    public void deployConfig() {
         /* TBD */
     }
 }

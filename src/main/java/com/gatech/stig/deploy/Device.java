@@ -6,13 +6,25 @@ package com.gatech.stig.deploy;
 
 /**
  *
- * @author Ragnarak
+ * @author jmarsh40
  */
-public class Device {
-    private static String name; // device name
+abstract public class Device {
+    private String name; // device name
+    private STIG[] sList; // list of device-specific stigs
+    private ACL[] aclList; // list of user-configure ACLs
+    private String address; // IP address of device for SSH
     
     /* Return device name */
-    public static String getName() {
+    public String getName() {
         return name;
     }
+    
+    /* Return the device's list of STIGs */
+    abstract public String getStigs();
+            
+    /* Create an Ansible Playbook for the device configuration */
+    abstract public void printStigs();
+    
+    /* Configure and toggle the STIGs for the device */
+    abstract public void editDevice();
 }

@@ -6,18 +6,18 @@ package com.gatech.stig.deploy;
 
 /**
  *
- * @author Ragnarak
+ * @author jmarsh40
  */
 public class ACL {
-    private static String name; // access control list name
-    private static String[] rList; // list of rules in ACL
+    private String name; // access control list name
+    private String[] rList; // list of rules in ACL
     
     /* Return the ACL name */
-    public static String getName() {
+    public String getName() {
         return name;
     }
     /* Return ACL rule list */
-    public static String getACL() {
+    public String getACL() {
         return String.join("\n", rList);
     }
 }

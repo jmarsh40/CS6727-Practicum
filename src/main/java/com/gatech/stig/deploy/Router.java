@@ -6,8 +6,32 @@ package com.gatech.stig.deploy;
 
 /**
  *
- * @author Ragnarak
+ * @author jmarsh40
  */
 public class Router extends Device{
-    /* TBD */
+    
+    /* Constructor to load STIGs */
+    public Router() {
+        loadStigs();
+        /* TBD */
+    }
+    
+        /* Return the device's list of STIGs */
+    public String getStigs(){
+            /* TBD */
+            return "";
+    }
+    
+    /* Configure the Router STIGs */
+    public void editDevice() {
+        /* TBD */
+    }
+    /* Load the router-specific STIGs */
+    public void loadStigs() {
+        /* TBD */
+    }
+    /* Print STIG information */
+    public void printStigs() {
+        /* TBD */
+    }
 }

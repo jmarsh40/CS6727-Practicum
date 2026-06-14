@@ -8,14 +8,14 @@ import java.util.Scanner;
 
 /**
  *
- * @author root
+ * @author jmarsh40
  */
 public class StigDeploy {
-    private static final String menu = "Please select an option: \nCreate a new configuration: 1 \nLoad a configuration: 2 \nExit: 3\n"; // Main menu text
-    private static Configuration config; // Current configuration
-    private static Configuration[] savedConfigs; // Saved configurations
+    private final String menu = "Please select an option: \nCreate a new configuration: 1 \nLoad a configuration: 2 \nExit: 3\n"; // Main menu text
+    private Configuration config; // Current configuration
+    private Configuration[] savedConfigs; // Saved configurations
 
-    public static void main(String[] args) {
+    public void main(String[] args) {
         Scanner selector = new Scanner(System.in); // Selector object to intake user input
         /* Main Menu loop*/
         while (true) {
@@ -40,7 +40,7 @@ public class StigDeploy {
         }
     }
     /* Load saved configurations */
-    private static void loadConfigs() {
+    private void loadConfigs() {
         // TBD
     }
 }
