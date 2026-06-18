@@ -10,13 +10,16 @@ package com.gatech.stig.deploy;
  */
 abstract public class STIG {
     private String title; // title of the benchmark
-    private boolean enabled; // toggle to enable/disable benchmark
+    public boolean enabled = false; // toggle to enable/disable benchmark
+    
+    public abstract String apply();
     
     /* Return STIG info */
     abstract public String getInfo();
     
-    /* Toggle STIG */
+    /* Toggle / Configure STIG */
     public void enable(boolean en){
         enabled = en;
+        System.out.println("Enabled set to: " + String.valueOf(enabled));
     }
 }

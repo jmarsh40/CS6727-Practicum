@@ -4,6 +4,8 @@
  */
 package com.gatech.stig.deploy;
 
+import java.util.List;
+
 /**
  *
  * @author jmarsh40
@@ -17,9 +19,9 @@ public class Switch extends Device {
     }
     
     /* Return the device's list of STIGs */
-    public String getStigs(){
+    public List<STIG> getStigs(){
             /* TBD */
-            return "";
+            return sList;
     }
     
     /* Configure the switch STIGs */

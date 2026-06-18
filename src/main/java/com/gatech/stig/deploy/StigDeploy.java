@@ -11,7 +11,10 @@ import java.util.Scanner;
  * @author jmarsh40
  */
 public class StigDeploy {
-    private final String menu = "Please select an option: \nCreate a new configuration: 1 \nLoad a configuration: 2 \nExit: 3\n"; // Main menu text
+    private final String menu = "Please select an option: \n"
+            + "1: Create a new configuration \n"
+            + "2: Load a configuration \n"
+            + "3: Exit"; // Main menu text
     private Configuration config; // Current configuration
     private Configuration[] savedConfigs; // Saved configurations
 
@@ -24,6 +27,8 @@ public class StigDeploy {
             /* Select 1 - create new configuration */
             if ("1".equals(choice)) {
                 config = new Configuration();
+                System.out.println("Creating new configuration...");
+                config.editConfig();
             }
             /* Select 2 - load saved configuration */
             else if ("2".equals(choice)) {
@@ -35,7 +40,7 @@ public class StigDeploy {
             }
             /* discard other input */
             else {
-                System.out.println("Please select one of the options above.");
+                System.out.println("Please select one of the options below\n");
             }       
         }
     }
