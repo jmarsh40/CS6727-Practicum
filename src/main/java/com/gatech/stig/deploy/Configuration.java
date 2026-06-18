@@ -24,6 +24,7 @@ public class Configuration {
     private String menu = "Please Select an option: \n"
             + "1: Create New Device \n"
             + "2: Edit Configured Devices \n"
+            + "3: Depoly Conguration \n"
             + "3: Return to main menu ";
     //private Device[] dList; // list of devices in configuration
     private List<Device> dList = new ArrayList<>(); // list of devices in configuration
@@ -88,7 +89,13 @@ public class Configuration {
                     System.out.println("There are no configured devices\n");
                 }
 
-            } else if ("3".equals(choice)) { // Select 3 - exit
+            } else if ("3".equals(choice)) { // Select 3 - deploy configuration
+                System.out.println("Building the inventory file...\n");
+                buildInventory();
+                System.out.println("Building Ansible playbooks...\n");
+                deployConfig();
+                System.out.println("Configuration successfully deployed!");
+            } else if ("4".equals(choice)) { // Select 4 - exit
                 return;
             } else { // Discard other input
                 System.out.println("Please select one of the options below\n");
