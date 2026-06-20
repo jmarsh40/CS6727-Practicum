@@ -10,14 +10,15 @@ import com.gatech.stig.deploy.STIG;
  *
  * @author jmarsh40
  */
-public class CISC_ND_000150 extends STIG {
-    private String title = "CISC-ND-000150"; // stig ID
-    private String description = "CAT II - The Cisco router must be configured to enforce the limit of three consecutive invalid logon attempts, \nafter which time it must lock out the user account from accessing the device for 15 minutes.";
-    private String scriptText = "login block-for 900 attempts 3 within 120";
+public class CISC_ND_000600 extends STIG {
+    private String title = "CISC-ND-000600"; // stig ID
+    private String description = "CAT II - The Cisco router must be configured to enforce password complexity by requiring that\n at least one special character be used.";
+    private String scriptText1 = "aaa common-criteria policy PASSWORD_POLICY";
+    private String scriptText2 = "special-case 1";
+    private String scriptText3 = "exit";
     
     /* Return STIG info */
     public String getInfo(){
-        /* TBD */
         String info = "STIG ID: " + title + "\n"
                 + "Description: " + description + "\n"
                 + "Enabled: " + String.valueOf(enabled);
@@ -30,7 +31,9 @@ public class CISC_ND_000150 extends STIG {
         String task = "    - name: " + title + "\n"
                 + "      cisco.ios.ios_config:\n"
                 + "        lines:\n"
-                + "          - " + scriptText + "\n\n";
+                + "          - " + scriptText1 + "\n"
+                + "          - " + scriptText2 + "\n"
+                + "          - " + scriptText3 + "\n\n";
         enable(true);
         return task;
     }

@@ -24,8 +24,8 @@ public class Configuration {
     private String menu = "Please Select an option: \n"
             + "1: Create New Device \n"
             + "2: Edit Configured Devices \n"
-            + "3: Depoly Conguration \n"
-            + "3: Return to main menu ";
+            + "3: Deploy Conguration \n"
+            + "4: Return to main menu ";
     //private Device[] dList; // list of devices in configuration
     private List<Device> dList = new ArrayList<>(); // list of devices in configuration
     private String dTypes = "Possible Devices:\n"
@@ -55,8 +55,14 @@ public class Configuration {
                         String hostName = selector.nextLine();
                         temp.setName(hostName);
                         System.out.println("Please enter an IP address.");
-                        String address = selector.nextLine();
-                        temp.setAddress(address);
+                        choice = selector.nextLine();
+                        /* Check for valid address */
+                        while (!IP.check(choice)) {
+                            System.out.println(choice + " is not a valid address");
+                            System.out.println("Enter the new device address");
+                            choice = selector.nextLine();
+                        }
+                        temp.setAddress(choice);
                         /* Configure the new device */
                         System.out.println("Configuring " + hostName);
                         temp.editDevice();
@@ -72,7 +78,7 @@ public class Configuration {
                     }
                 }
             } else if ("2".equals(choice)) { // Select 2 - edit configured devices
-                if (dList.size() != 0) {
+                if (dList.isEmpty()) {
                     System.out.println("Please select a configured device:");
                     int i = 1;
                     for (Device device : dList) {
@@ -112,7 +118,7 @@ public class Configuration {
     public void deployConfig() {
         /* TBD */
         /* Check for empty device list */
-        if (dList.size() == 0) {
+        if (dList.isEmpty()) {
             System.out.println("There are no configured devices\n");
             return;
         }
@@ -129,10 +135,11 @@ public class Configuration {
                     System.out.println(fileName + " already exists");
                 }
 
-                String aTemplate = "- Name: \" STIG Deployment\"\n"
+                String aTemplate = "- Name: \"STIG Deployment\"\n"
                         + "  hosts: " + name + "\n"
+                        + "  ignore_errors: true\n"
                         + "  tasks: \n"
-                        + "    # Begin Configuration\n\n";
+                        + "    ### Begin benchmarks ###\n\n";
                 /* Write header info to playbook */
                 Path iPath = Paths.get(fileName);
                 Files.writeString(iPath, aTemplate);
@@ -140,7 +147,7 @@ public class Configuration {
                 for (STIG stig : inv.getStigs()) {
                     if (stig.enabled) {
                         String tasks = stig.apply();
-                        Files.writeString(iPath, aTemplate, StandardOpenOption.APPEND);
+                        Files.writeString(iPath, tasks, StandardOpenOption.APPEND);
                     }
                 }
             } catch (IOException e) {
@@ -165,8 +172,8 @@ public class Configuration {
 
             /* Ansible connection variables */
             String script = "[all:vars]\n"
-                    + "ansible_connection=ansible.netcommon.network_cli\n"
-                    + "ansible_network_os=cisco.ios.ios\n"
+                    + "ansible_connection = ansible.netcommon.network_cli\n"
+                    + "ansible_network_os = cisco.ios.ios\n"
                     + "ansible_become = true\n"
                     + "ansible_become_password = cisco\n"
                     + "ansible_user = cisco\n"

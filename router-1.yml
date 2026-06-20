@@ -1,0 +1,87 @@
+- Name: "STIG Deployment"
+  hosts: router-1
+  ignore_errors: true
+  tasks: 
+    ### Begin benchmarks ###
+
+    - name: CISC-ND-000150
+      cisco.ios.ios_config:
+        lines:
+          - login block-for 900 attempts 3 within 120
+
+    - name: CISC-ND-000160
+      cisco.ios.ios_banner:
+        banner: login
+        text:  |
+          banner login ^C
+          You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
+
+          By using this IS (which includes any device attached to this IS), you consent to the following conditions:
+          
+          -The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.
+
+          -At any time, the USG may inspect and seize data stored on this IS.
+
+          -Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.
+
+          -This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.
+
+          -Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.
+          ^C
+        state: present
+
+    - name: CISC-ND-000280
+      cisco.ios.ios_config:
+        lines:
+          - service timestamps log datetime localtime
+
+    - name: CISC-ND-000380
+      cisco.ios.ios_config:
+        lines:
+          - file privilege 15
+
+    - name: CISC-ND-000390
+      cisco.ios.ios_config:
+        lines:
+          - file privilege 15
+
+    - name: CISC-ND-000460
+      cisco.ios.ios_config:
+        lines:
+          - file privilege 15
+
+    - name: CISC-ND-000550
+      cisco.ios.ios_config:
+        lines:
+          - aaa common-criteria policy PASSWORD_POLICY
+          - min-length 15
+          - exit
+
+    - name: CISC-ND-000570
+      cisco.ios.ios_config:
+        lines:
+          - aaa common-criteria policy PASSWORD_POLICY
+          - upper-case 1
+          - exit
+
+    - name: CISC-ND-000580
+      cisco.ios.ios_config:
+        lines:
+          - aaa common-criteria policy PASSWORD_POLICY
+          - lower-case 1
+          - exit
+
+    - name: CISC-ND-000590
+      cisco.ios.ios_config:
+        lines:
+          - aaa common-criteria policy PASSWORD_POLICY
+          - numeric-count 1
+          - exit
+
+    - name: CISC-ND-000600
+      cisco.ios.ios_config:
+        lines:
+          - aaa common-criteria policy PASSWORD_POLICY
+          - special-case 1
+          - exit
+

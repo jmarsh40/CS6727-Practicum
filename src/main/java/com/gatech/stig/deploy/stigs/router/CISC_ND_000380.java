@@ -10,10 +10,10 @@ import com.gatech.stig.deploy.STIG;
  *
  * @author jmarsh40
  */
-public class CISC_ND_000150 extends STIG {
-    private String title = "CISC-ND-000150"; // stig ID
-    private String description = "CAT II - The Cisco router must be configured to enforce the limit of three consecutive invalid logon attempts, \nafter which time it must lock out the user account from accessing the device for 15 minutes.";
-    private String scriptText = "login block-for 900 attempts 3 within 120";
+public class CISC_ND_000380 extends STIG {
+    private String title = "CISC-ND-000380"; // stig ID
+    private String description = "CAT II - The Cisco router must be configured to protect audit information from unauthorized modification.";
+    private String scriptText = "file privilege 15";
     
     /* Return STIG info */
     public String getInfo(){

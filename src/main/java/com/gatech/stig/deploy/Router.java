@@ -43,7 +43,7 @@ public class Router extends Device{
             System.out.println(menu);
             String choice = selector.nextLine();
             if ("1".equals(choice)) { // Select 1 - List STIGs
-                if (sList.size() == 0){
+                if (sList.isEmpty()){
                     System.out.println("There are no STIGs configured for this device");
                 }
                 else {
@@ -52,20 +52,21 @@ public class Router extends Device{
                     }
                 }
             } else if ("2".equals(choice)) { // Select 2 - Enable/Disable STIGs
-                if (sList.size() == 0){
+                if (sList.isEmpty()){
                     System.out.println("There are no STIGs configured for this device");
                 }
                 else {
                     int i = 1;
+                    /* List STIGs */
                     System.out.println("Select a STIG benchmark: ");
                     for (STIG stig : sList) {
                         System.out.println(i + ": " + stig.getInfo());
                         i++;
                     }
+                    /* Select one of the listed STIGs */
                     choice = selector.nextLine();
                     i = Integer.parseInt(choice);
                     if ((i > 0) && (i <= sList.size())) {
-                        System.out.println("!!!Applying STIG!!!\n");
                         sList.get(i-1).apply();
                     } else {
                         System.out.println("Please select one of the STIGs listed by number\n");
@@ -75,14 +76,22 @@ public class Router extends Device{
                 System.out.println("Enter the new device name");
                 choice = selector.nextLine();
                 name = choice;
-                System.out.println("Device name: " + name);
             } else if ("4".equals(choice)) { // Select 4 - Change address
                 System.out.println("Enter the new device address");
                 choice = selector.nextLine();
+                while (!IP.check(choice)) {
+                    System.out.println(choice + " is not a valid address");
+                    System.out.println("Enter the new device address");
+                    choice = selector.nextLine();
+                }
                 address = choice;
-                System.out.println("Device address: " + address);
             } else if ("5".equals(choice)) { // Select 5 - Return to Configuration menu
                 break;
+            } else if ("6".equals(choice)) { // Select 6 - Enable all STIGs for testing
+                for (STIG stig : sList) {
+                    System.out.println("!!! Enabling all STIGs !!!");
+                    stig.apply();
+                }
             } else { // Discard other input
                 System.out.println("Please select one of the available device options:");
             }
@@ -93,6 +102,16 @@ public class Router extends Device{
     public void loadStigs() {
         /* TBD */
         sList.add(new CISC_ND_000150());
+        sList.add(new CISC_ND_000160());
+        sList.add(new CISC_ND_000280());
+        sList.add(new CISC_ND_000380());
+        sList.add(new CISC_ND_000390());
+        sList.add(new CISC_ND_000460());
+        sList.add(new CISC_ND_000550());
+        sList.add(new CISC_ND_000570());
+        sList.add(new CISC_ND_000580());
+        sList.add(new CISC_ND_000590());
+        sList.add(new CISC_ND_000600());
     }
     /* Print STIG information */
     public void printStigs() {
