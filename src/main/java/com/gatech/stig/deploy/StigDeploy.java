@@ -4,6 +4,8 @@
 package com.gatech.stig.deploy;
 
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -27,10 +29,10 @@ public class StigDeploy {
             String choice = selector.nextLine();
             if ("1".equals(choice)) { // Select 1 - create new configuration
                 config = new Configuration();
-                System.out.println("Creating new configuration...");
+                System.out.println("Creating new configuration...\n");
                 config.editConfig();
             } else if ("2".equals(choice)) { // Select 2 - load saved configuration
-
+                //loadConfig();
             } else if ("3".equals(choice)) { // Select 3 - exit
                 return;
             } else { // discard other input
@@ -40,7 +42,11 @@ public class StigDeploy {
     }
 
     /* Load saved configurations */
-    private void loadConfigs() {
+    private void loadConfig() {
         // TBD
+        System.out.println("Loading saved configuration\n");
+        config = new Configuration();
+        config.loadConfig();
+        config.editConfig();
     }
 }
