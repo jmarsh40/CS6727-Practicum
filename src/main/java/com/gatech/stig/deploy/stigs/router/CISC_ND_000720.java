@@ -44,15 +44,22 @@ public class CISC_ND_000720 extends STIG {
     public String apply() {
 
         /* Build task script */
-        String task = "    - name: " + title + "\n"
+        String task = "    - name: " + title + " - vty\n"
                 + "      cisco.ios.ios_config:\n"
                 + "        lines:\n"
-                + "          - line vty 0 1\n"
                 + "          - exec-timeout 5 0\n"
-                + "          - exit\n"
+                + "        parents:\n"
+                + "          - line vty 0 1\n\n"
+                + "    - name: " + title + " - console\n"
+                + "      cisco.ios.ios_config:\n"
+                + "        lines:\n"
                 + "          - line con 0\n"
                 + "          - exec-timeout 5 0\n"
-                + "          - exit\n"
+                + "        parents:\n"
+                + "          - line con 0\n\n"
+                + "    - name: " + title + " - timeout\n"
+                + "      cisco.ios.ios_config:\n"
+                + "        lines:\n"
                 + "          - ip http timeout-policy idle " + idle + " life " + life + " requests " + requests + "\n\n";
         return task;
     }

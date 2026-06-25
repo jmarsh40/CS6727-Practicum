@@ -46,7 +46,6 @@ public class CISC_ND_001410 extends STIG {
         String task = "    - name: " + title + "\n"
                 + "      cisco.ios.ios_config:\n"
                 + "        lines:\n"
-                + "          - event manager applet BACKUP_CONFIG\n"
                 + "          - event syslog pattern \"%SYS-5-CONFIG_I\"\n"
                 + "          - action 1 cli command \"enable\"\n"
                 + "          - action 2 info type routername\n"
@@ -54,7 +53,8 @@ public class CISC_ND_001410 extends STIG {
                 + "          - action 4 cli command \"" + server + "\" pattern \"filename\"\n"
                 + "          - action 5 cli command \"$_info_routername-config\"\n"
                 + "          - action 6 syslog priority informational msg \"Configuration backup was executed\"\n"
-                + "          - end\n\n";
+                + "        parents:\n"
+                + "          - event manager applet BACKUP_CONFIG\n\n";
         return task;
     }
 

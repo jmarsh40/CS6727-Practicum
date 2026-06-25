@@ -41,9 +41,9 @@ public class CISC_ND_000600 extends STIG {
         String task = "    - name: " + title + "\n"
                 + "      cisco.ios.ios_config:\n"
                 + "        lines:\n"
-                + "          - aaa common-criteria policy PASSWORD_POLICY\n"
                 + "          - special-case 1\n"
-                + "          - exit\n\n";
+                + "        parents:\n"
+                + "          - aaa common-criteria policy PASSWORD_POLICY\n\n";
         return task;
     }
     

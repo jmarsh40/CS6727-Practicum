@@ -41,14 +41,13 @@ public class CISC_ND_000210 extends STIG {
         String task = "    - name: " + title + "\n"
                 + "      cisco.ios.ios_config:\n"
                 + "        lines:\n"
-                + "          - logging userinfo"
-                + "          - archive\n"
-                + "          - log config\n"
                 + "          - logging enable\n"
                 + "          - logging size 1000\n"
                 + "          - notify syslog contenttype plaintext\n"
                 + "          - hidekeys\n"
-                + "          - end\n\n";
+                + "        parents: \n"
+                + "          - archive\n"
+                + "          - log config\n\n";
         return task;
     }
     

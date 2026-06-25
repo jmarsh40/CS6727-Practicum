@@ -178,7 +178,10 @@ public class Configuration {
                 String aTemplate = "- name: \"STIG Deployment\"\n"
                         + "  hosts: " + name + "\n"
                         + "  ignore_errors: true\n"
-                        + "  tasks: \n"
+                        + "  tasks: \n\n"
+                        + "    ### Gather Data ###\n\n"
+                        + "    - name: Gather Data\n"
+                        + "      cisco.ios.ios_facts:\n\n"
                         + "    ### Begin benchmarks ###\n\n";
                 /* Write header info to playbook */
                 Path iPath = Paths.get(fileName);

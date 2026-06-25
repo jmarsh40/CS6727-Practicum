@@ -39,7 +39,7 @@ public class CISC_ND_001470 extends STIG {
     public String apply(){
         /* Build task script */
         String task = "    - name: " + title + "\n"
-                + "      cisco.ios.ios_facts:\n"
+                + "      debug:\n"
                 + "        msg: \"Cisco IOS version: {{ ansible_net_version }}\"\n\n";
         return task;
     }

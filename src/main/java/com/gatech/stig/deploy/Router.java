@@ -125,18 +125,18 @@ public class Router extends Device{
                     choice = selector.nextLine();
                 }
                 address = choice;
-            } else if ("5".equals(choice)) { // Select 5 - Return to Configuration menu
-                break;
-            } else if ("6".equals(choice)) { // Select 6 - Enable all STIGs for testing
+            } else if ("5".equals(choice)) { // Select 5 - Enable all STIGs for testing
                 for (STIG stig : sList) {
                     System.out.println("!!! Enabling all STIGs !!!");
                     stig.enable(true);
                 }
-            } else if ("7".equals(choice)) { // Select 6 - Enable all STIGs for testing
+            } else if ("6".equals(choice)) { // Select 6 - Configure all STIGs for testing
                 for (STIG stig : sList) {
                     System.out.println("!!! Configuring all STIGs !!!");
                     stig.configure(true);
                 }
+            } else if ("7".equals(choice)) { // Select 7 - Return to Configuration menu
+                break;
             } else { // Discard other input
                 System.out.println("Please select one of the available device options:");
             }

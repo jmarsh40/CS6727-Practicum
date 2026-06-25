@@ -47,9 +47,9 @@ public class CISC_ND_001440 extends STIG {
         String task = "    - name: " + title + "\n"
                 + "      cisco.ios.ios_config:\n"
                 + "        lines:\n"
-                + "          - crypto pki trustpoint " + ca + "\n"
                 + "          - enrollment url " + url + "\n"
-                + "          - exit\n\n";
+                + "        parents:\n"
+                + "          - crypto pki trustpoint " + ca + "\n\n";
         return task;
     }
 

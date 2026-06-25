@@ -41,7 +41,7 @@ public class CISC_ND_000620 extends STIG {
         String task = "    - name: " + title + "\n"
                 + "      cisco.ios.ios_config:\n"
                 + "        lines:\n"
-                + "          - service password-encryption\n";
+                + "          - service password-encryption\n\n";
         return task;
     }
     
