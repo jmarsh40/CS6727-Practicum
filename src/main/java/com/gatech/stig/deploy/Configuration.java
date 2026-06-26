@@ -58,18 +58,9 @@ public class Configuration {
                     if ("1".equals(choice)) { // Configure new router
                         Device temp = new Router();
                         /* Get hostname and IP address */
-                        System.out.println("Please enter a hostname.");
+                        System.out.println("Please enter a device name.");
                         String hostName = selector.nextLine();
                         temp.setName(hostName);
-                        System.out.println("Please enter an IP address.");
-                        choice = selector.nextLine();
-                        /* Check for valid address */
-                        while (!IP.check(choice)) {
-                            System.out.println(choice + " is not a valid address");
-                            System.out.println("Enter the new device address");
-                            choice = selector.nextLine();
-                        }
-                        temp.setAddress(choice);
                         /* Configure the new device */
                         System.out.println("Configuring " + hostName);
                         temp.editDevice();
@@ -77,7 +68,16 @@ public class Configuration {
                         dList.add(temp);
                         break;
                     } else if ("2".equals(choice)) { // Configure new switch
-
+                        Device temp = new Switch();
+                        /* Get hostname and IP address */
+                        System.out.println("Please enter a device name.");
+                        String hostName = selector.nextLine();
+                        temp.setName(hostName);
+                        /* Configure the new device */
+                        System.out.println("Configuring " + hostName);
+                        temp.editDevice();
+                        /* Add the new device to the configuration */
+                        dList.add(temp);
                     } else if ("3".equals(choice)) { // Return to Configuration menu
                         break;
                     } else { // Check for invalid input
@@ -224,7 +224,7 @@ public class Configuration {
             /* Add devices and addresses */
             for (Device inv : dList) {
                 script += "[" + inv.getName() + "]\n"
-                        + inv.getAddress() + "\n";
+                        + inv.getAddresses();
             }
             /* Write inventory to file */
             Path iPath = Paths.get(fileName);
