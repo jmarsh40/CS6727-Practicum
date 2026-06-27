@@ -51,7 +51,7 @@ public class Switch extends Device {
                     int cat2=0, cat2e = 0; // category 2 stigs
                     int cat3=0, cat3e = 0; // category 3 stigs
                     for (STIG stig : sList) {
-                        System.out.println(stig.getInfo());
+                        System.out.println(">>> " + stig.getInfo() + "\n");
                         switch (stig.getCat()) {
                             case 1:
                                 cat1++;
@@ -172,7 +172,7 @@ public class Switch extends Device {
         sList.add(new CISC_ND_001000());
         sList.add(new CISC_ND_001030());
         sList.add(new CISC_ND_001130());
-        sList.add(new CISC_ND_001140());
+        //sList.add(new CISC_ND_001140());
         sList.add(new CISC_ND_001150());
         sList.add(new CISC_ND_001200());
         sList.add(new CISC_ND_001210());

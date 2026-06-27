@@ -16,7 +16,7 @@ public class CISC_ND_001450 extends STIG {
 
     private String title = "CISC-ND-001450"; // stig ID
     private int cat = 1;
-    private String description = "The Cisco router must be configured to send log data to at least two syslog servers\n for the purpose of forwarding alerts to the administrators and the ISSO.";
+    private String description = "The Cisco switch must be configured to send log data to at least two syslog servers\n for the purpose of forwarding alerts to the administrators and the ISSO.";
     private String sysLog1 = "1.1.1.1"; // syslog server 1
     private String sysLog2 = "2.2.2.2"; // syslog server 2
         

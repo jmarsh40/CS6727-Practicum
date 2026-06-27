@@ -16,7 +16,7 @@ public class CISC_ND_001370 extends STIG {
 
     private String title = "CISC-ND-001370"; // stig ID
     private int cat = 2; // stig category
-    private String description = "The Cisco router must be configured to use at least two authentication servers for the\n purpose of authenticating users prior to granting administrative access.";
+    private String description = "The Cisco switch must be configured to use at least two authentication servers for the\n purpose of authenticating users prior to granting administrative access.";
     private String server1 = "1.1.1.1"; // radius address 1
     private String server2 = "2.2.2.2"; // radius address 2
     private String key1 = "radiuskey1"; // radius key 1

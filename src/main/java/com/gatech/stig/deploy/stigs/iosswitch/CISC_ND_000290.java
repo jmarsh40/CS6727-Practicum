@@ -14,7 +14,7 @@ public class CISC_ND_000290 extends STIG {
 
     private String title = "CISC-ND-000290"; // stig ID
     private int cat = 2;
-    private String description = "The Cisco router must produce audit records containing information to establish where the events occurred.";
+    private String description = "The Cisco switch must produce audit records containing information to establish where the events occurred.";
     private String sessions = "2"; // idle concurrent sessions
 
     /* Return STIG info */

@@ -91,11 +91,12 @@ public class Configuration {
                     int i = 1;
                     for (Device device : dList) {
                         System.out.println(i + ": " + device.getName());
+                        i++;
                     }
                     choice = selector.nextLine();
                     i = Integer.parseInt(choice);
-                    if ((i > 0) && (i <= dList.size())) {
-                        dList.get(i).editDevice();
+                    if ((i > 0) && (i <= dList.size())) { // check that selection is in bounds
+                        dList.get(i-1).editDevice();
                     } else {
                         System.out.println("Please select one of the devices listed by number\n");
                     }

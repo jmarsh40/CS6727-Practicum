@@ -51,7 +51,7 @@ public class Router extends Device{
                     int cat2=0, cat2e = 0; // category 2 stigs
                     int cat3=0, cat3e = 0; // category 3 stigs
                     for (STIG stig : sList) {
-                        System.out.println(stig.getInfo());
+                        System.out.println(">>> " + stig.getInfo() + "\n");
                         switch (stig.getCat()) {
                             case 1:
                                 cat1++;

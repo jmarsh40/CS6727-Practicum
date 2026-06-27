@@ -44,7 +44,6 @@ public class CISC_ND_000470 extends STIG {
                 + "          - no boot network\n"
                 + "          - no ip bootp server\n"
                 + "          - no ip dns server\n"
-                + "          - no ip identd\n"
                 + "          - no ip finger\n"
                 + "          - no ip http server\n"
                 + "          - no ip rcmd rcp-enable\n"
@@ -53,8 +52,7 @@ public class CISC_ND_000470 extends STIG {
                 + "          - no service finger\n"
                 + "          - no service tcp-small-servers\n"
                 + "          - no service udp-small-servers\n"
-                + "          - no service pad\n"
-                + "          - end\n\n";
+                + "          - no service pad\n\n";
         return task;
     }
     

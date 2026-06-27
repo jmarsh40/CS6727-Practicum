@@ -15,7 +15,7 @@ public class CISC_ND_000010 extends STIG {
 
     private String title = "CISC-ND-000010"; // stig ID
     private int cat = 2;
-    private String description = "The Cisco router must be configured to limit the number of concurrent management sessions to an organization-defined number.";
+    private String description = "The Cisco switch must be configured to limit the number of concurrent management sessions to an organization-defined number.";
     private String sessions = "2"; // idle concurrent sessions
 
     /* Return STIG info */
