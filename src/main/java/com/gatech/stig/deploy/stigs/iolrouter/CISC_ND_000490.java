@@ -4,7 +4,6 @@
  */
 package com.gatech.stig.deploy.stigs.iolrouter;
 
-import com.gatech.stig.deploy.IP;
 import com.gatech.stig.deploy.STIG;
 import java.util.Scanner;
 
@@ -46,11 +45,12 @@ public class CISC_ND_000490 extends STIG {
         String task = "    - name: " + title + " - purge\n"
                 + "      cisco.ios.ios_user:\n"
                 + "        aggregate:\n"
-                + "          - name:" + user + "\n"
+                + "          - name: " + user + "\n"
                 + "        purge: true\n\n"
                 + "    - name: " + title + " - aaa\n"
                 + "      cisco.ios.ios_config:\n"
                 + "        lines:\n"
+                + "          - aaa new-model\n"
                 + "          - aaa authentication login default group tacacs+ local\n\n";
         return task;
     }

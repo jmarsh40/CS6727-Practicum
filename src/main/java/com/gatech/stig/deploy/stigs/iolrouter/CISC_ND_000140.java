@@ -66,7 +66,7 @@ public class CISC_ND_000140 extends STIG {
                 + "                      any: true\n"
                 + "                    log_input:\n"
                 + "                      set: true\n"
-                + "        state: replace\n\n"
+                + "        state: replaced\n\n"
                 + "    - name: " + title + " - vty\n"
                 + "      cisco.ios.ios_config:\n"
                 + "        lines:\n"

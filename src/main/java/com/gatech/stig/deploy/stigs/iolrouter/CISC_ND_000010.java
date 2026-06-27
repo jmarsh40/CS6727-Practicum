@@ -45,8 +45,9 @@ public class CISC_ND_000010 extends STIG {
         String task = "    - name: " + title + "\n"
                 + "      cisco.ios.ios_config:\n"
                 + "        lines:\n"
-                + "          - line vty 0 4\n"
-                + "          - session-limit " + sessions + "\n\n";
+                + "          - session-limit " + sessions + "\n"
+                + "        parents:"
+                + "          - line vty 0 4\n\n";
         return task;
     }
 

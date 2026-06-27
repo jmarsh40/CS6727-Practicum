@@ -57,7 +57,7 @@ public class CISC_ND_000290 extends STIG {
                 + "                      any: true\n"
                 + "                    log_input:\n"
                 + "                      set: true\n"
-                + "        state: replace\n\n";
+                + "        state: replaced\n\n";
         return task;
     }
 
