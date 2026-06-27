@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.gatech.stig.deploy.stigs.iolrouter;
+package com.gatech.stig.deploy.stigs.iosswitch;
 
+import com.gatech.stig.deploy.IP;
 import com.gatech.stig.deploy.STIG;
 import java.util.Scanner;
 
@@ -11,13 +12,14 @@ import java.util.Scanner;
  *
  * @author jmarsh40
  */
-public class CISC_ND_000010 extends STIG {
+public class CISC_ND_001030 extends STIG {
 
-    private String title = "CISC-ND-000010"; // stig ID
+    private String title = "CISC-ND-001030"; // stig ID
     private int cat = 2;
-    private String description = "The Cisco router must be configured to limit the number of concurrent management sessions to an organization-defined number.";
-    private String sessions = "2"; // idle concurrent sessions
-
+    private String description = "The Cisco switch must be configured to synchronize its clock with the primary\n and secondary time sources using redundant authoritative time sources.";
+    private String ntp1 = "1.1.1.1"; // ntp server 1
+    private String ntp2 = "2.2.2.2"; // ntp server 2
+        
     /* Return STIG info */
     public String getInfo() {
         /* Get roman numeral for STIG category and assemble output*/
@@ -45,9 +47,8 @@ public class CISC_ND_000010 extends STIG {
         String task = "    - name: " + title + "\n"
                 + "      cisco.ios.ios_config:\n"
                 + "        lines:\n"
-                + "          - session-limit " + sessions + "\n"
-                + "        parents:\n"
-                + "          - line vty 0 4\n\n";
+                + "          - ntp server " + ntp1 + "\n"
+                + "          - ntp server " + ntp2 + "\n\n";
         return task;
     }
 
@@ -57,23 +58,37 @@ public class CISC_ND_000010 extends STIG {
         if (!en) {
             return;
         }
-        /* Configure variables */
         Scanner selector = new Scanner(System.in);
         String choice = "";
 
-        /* Set idle timeout */
+        /* Set npt1 address */
         while (true) {
-            System.out.println("Enter the max number of concurrent management sessions (0-4294967295)");
+            System.out.println("Enter an IP address for the primary NTP server");
             choice = selector.nextLine();
             try {
-                if ((Integer.parseInt(choice) >= 0)) { // Input is in range
-                    sessions = choice;
+                if (IP.check(choice)) { // Input is in range
+                    ntp1 = choice;
                     break;
                 } else { // Input is out of range
-                    System.out.println("Value not in range");
+                    System.out.println("Not a valid IP address");
                 }
             } catch (NumberFormatException e) { // Catch non-parseable input
-                System.out.println("Value not in range");
+                System.out.println("Not a valid IP address");
+            }
+        }
+        /* Set npt1 address */
+        while (true) {
+            System.out.println("Enter an IP address for the secondary NTP server");
+            choice = selector.nextLine();
+            try {
+                if (IP.check(choice)) { // Input is in range
+                    ntp2 = choice;
+                    break;
+                } else { // Input is out of range
+                    System.out.println("Not a valid IP address");
+                }
+            } catch (NumberFormatException e) { // Catch non-parseable input
+                System.out.println("Not a valid IP address");
             }
         }
     }

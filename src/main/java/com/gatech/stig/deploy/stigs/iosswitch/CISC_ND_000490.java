@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.gatech.stig.deploy.stigs.iolrouter;
+package com.gatech.stig.deploy.stigs.iosswitch;
 
 import com.gatech.stig.deploy.STIG;
 import java.util.Scanner;
@@ -11,13 +11,13 @@ import java.util.Scanner;
  *
  * @author jmarsh40
  */
-public class CISC_ND_000010 extends STIG {
+public class CISC_ND_000490 extends STIG {
 
-    private String title = "CISC-ND-000010"; // stig ID
-    private int cat = 2;
-    private String description = "The Cisco router must be configured to limit the number of concurrent management sessions to an organization-defined number.";
-    private String sessions = "2"; // idle concurrent sessions
-
+    private String title = "CISC-ND-000490"; // stig ID
+    private int cat = 2; // stig category
+    private String description = "The Cisco switch must be configured with only one local account to be used as the\n account of last resort in the event the authentication server is unavailable.";
+    private String user = "cisco"; // local username
+        
     /* Return STIG info */
     public String getInfo() {
         /* Get roman numeral for STIG category and assemble output*/
@@ -42,12 +42,16 @@ public class CISC_ND_000010 extends STIG {
     public String apply() {
 
         /* Build task script */
-        String task = "    - name: " + title + "\n"
+        String task = "    - name: " + title + " - purge\n"
+                + "      cisco.ios.ios_user:\n"
+                + "        aggregate:\n"
+                + "          - name: " + user + "\n"
+                + "        purge: true\n\n"
+                + "    - name: " + title + " - aaa\n"
                 + "      cisco.ios.ios_config:\n"
                 + "        lines:\n"
-                + "          - session-limit " + sessions + "\n"
-                + "        parents:\n"
-                + "          - line vty 0 4\n\n";
+                + "          - aaa new-model\n"
+                + "          - aaa authentication login default group tacacs+ local\n\n";
         return task;
     }
 
@@ -57,23 +61,22 @@ public class CISC_ND_000010 extends STIG {
         if (!en) {
             return;
         }
-        /* Configure variables */
         Scanner selector = new Scanner(System.in);
         String choice = "";
 
-        /* Set idle timeout */
+        /* Get the local username to keep */
         while (true) {
-            System.out.println("Enter the max number of concurrent management sessions (0-4294967295)");
+            System.out.println("Enter the name of the single local user to keep");
             choice = selector.nextLine();
             try {
-                if ((Integer.parseInt(choice) >= 0)) { // Input is in range
-                    sessions = choice;
+                if (!choice.isEmpty()) { // Input is not empty
+                    user = choice;
                     break;
-                } else { // Input is out of range
-                    System.out.println("Value not in range");
+                } else { // Input is empty
+                    System.out.println("Enter a name");
                 }
             } catch (NumberFormatException e) { // Catch non-parseable input
-                System.out.println("Value not in range");
+                System.out.println("Enter a name");
             }
         }
     }

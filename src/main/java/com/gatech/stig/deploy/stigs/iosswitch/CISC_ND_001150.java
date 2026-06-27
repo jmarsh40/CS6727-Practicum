@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.gatech.stig.deploy.stigs.iolrouter;
+package com.gatech.stig.deploy.stigs.iosswitch;
 
 import com.gatech.stig.deploy.IP;
 import com.gatech.stig.deploy.STIG;
@@ -12,14 +12,15 @@ import java.util.Scanner;
  *
  * @author jmarsh40
  */
-public class CISC_ND_000140 extends STIG {
+public class CISC_ND_001150 extends STIG {
 
-    private String title = "CISC-ND-000140"; // stig ID
-    private int cat = 2;
-    private String description = "The Cisco router must be configured to enforce approved authorizations for controlling the\n flow of management information within the device based on control policies.";
-    private String address = "192.168.1.0"; // management subnet address
-    private String mask = "0.0.0.255"; // management reverse mask
-
+    private String title = "CISC-ND-001150"; // stig ID
+    private int cat = 2; // stig category
+    private String description = "The Cisco switch must be configured to authenticate Network Time Protocol (NTP) sources\n using authentication with FIPS-compliant algorithms.";
+    private String ntp1 = "1.1.1.1"; // NTP primary server host
+    private String ntp2 = "2.2.2.2"; // NTP secondary host
+    private String key = "ntpkey"; // NTP authentication key
+        
     /* Return STIG info */
     public String getInfo() {
         /* Get roman numeral for STIG category and assemble output*/
@@ -44,50 +45,48 @@ public class CISC_ND_000140 extends STIG {
     public String apply() {
 
         /* Build task script */
-        String task = "    - name: " + title + " - acl\n"
-                + "      cisco.ios.ios_acls:\n"
-                + "        config:\n"
-                + "          - afi: ipv4\n"
-                + "            acls:\n"
-                + "              - name: MANAGEMENT_NET\n"
-                + "                acl_type: standard\n"
-                + "                aces:\n"
-                + "                  - grant: permit\n"
-                + "                    source:\n"
-                + "                      address: " + address + "\n"
-                + "                      wildcard_bits: " + mask + "\n"
-                + "                  - grant: deny\n"
-                + "                    source:\n"
-                + "                      any: true\n"
-                + "                    log:\n"
-                + "                      set: true\n"
-                + "        state: replaced\n\n"
-                + "    - name: " + title + " - vty\n"
+        String task = "    - name: " + title + "\n"
                 + "      cisco.ios.ios_config:\n"
                 + "        lines:\n"
-                + "          - transport input ssh\n"
-                + "          - access-class MANAGEMENT_NET in\n"
-                + "        parents:\n"
-                + "          - line vty 0 1\n\n";
+                + "          - ntp authentication-key 1 md5 "+ key + "\n"
+                + "          - ntp authenticate\n"
+                + "          - ntp trusted-key 1\n"
+                + "          - ntp server " + ntp1 + " key 1\n"
+                + "          - ntp server " + ntp2 + " key 1\n\n";
         return task;
     }
 
     /* toggle and configure STIG */
     public void configure(boolean en) {
         enable(en);
-                if (!en) {
+        if (!en) {
             return;
         }
         Scanner selector = new Scanner(System.in);
         String choice = "";
 
-        /* Set management subnet address */
+        /* Set ntp authentication key */
         while (true) {
-            System.out.println("Enter an IP address for the management subnet");
+            System.out.println("Enter an NTP authentication key");
+            choice = selector.nextLine();
+            try {
+                if (!choice.isEmpty()) { // Input is not empty
+                    key = choice;
+                    break;
+                } else { // Input is empty
+                    System.out.println("Enter a key");
+                }
+            } catch (NumberFormatException e) { // Catch non-parseable input
+                System.out.println("Value not in range");
+            }
+        }
+        /* Set primary NTP server address */
+        while (true) {
+            System.out.println("Enter an IP address for primary NTP server");
             choice = selector.nextLine();
             try {
                 if (IP.check(choice)) { // Input is in range
-                    address = choice;
+                    ntp1 = choice;
                     break;
                 } else { // Input is out of range
                     System.out.println("Not a valid IP address");
@@ -96,13 +95,13 @@ public class CISC_ND_000140 extends STIG {
                 System.out.println("Not a valid IP address");
             }
         }
-        /* Set management reverse mask */
+        /* Set secondary NTP server address */
         while (true) {
-            System.out.println("Enter a reverse mask for the management subnet");
+            System.out.println("Enter an IP address for secondary NTP server");
             choice = selector.nextLine();
             try {
                 if (IP.check(choice)) { // Input is in range
-                    mask = choice;
+                    ntp2 = choice;
                     break;
                 } else { // Input is out of range
                     System.out.println("Not a valid IP address");

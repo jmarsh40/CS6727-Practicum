@@ -78,6 +78,7 @@ public class Configuration {
                         temp.editDevice();
                         /* Add the new device to the configuration */
                         dList.add(temp);
+                        break;
                     } else if ("3".equals(choice)) { // Return to Configuration menu
                         break;
                     } else { // Check for invalid input

@@ -5,24 +5,21 @@
 package com.gatech.stig.deploy.stigs.iosswitch;
 
 import com.gatech.stig.deploy.STIG;
-import java.util.Scanner;
 
 /**
  *
  * @author jmarsh40
  */
-public class CISC_ND_000010 extends STIG {
-
-    private String title = "CISC-ND-000010"; // stig ID
-    private int cat = 2;
-    private String description = "The Cisco router must be configured to limit the number of concurrent management sessions to an organization-defined number.";
-    private String sessions = "2"; // idle concurrent sessions
-
+public class CISC_ND_001470 extends STIG {
+    private String title = "CISC-ND-001470"; // stig ID
+    private int cat = 1; // stig category
+    private String description = "The Cisco switch must be running an IOS release that is currently supported by Cisco Systems.";
+    
     /* Return STIG info */
-    public String getInfo() {
+    public String getInfo(){
         /* Get roman numeral for STIG category and assemble output*/
         String c = "Uncategorized";
-        switch (cat) {
+        switch(cat) {
             case 1:
                 c = "I";
                 break;
@@ -37,20 +34,16 @@ public class CISC_ND_000010 extends STIG {
                 + "Enabled: " + String.valueOf(enabled);
         return info;
     }
-
+    
     /* return the text of the script to be written to the ansible playbook */
-    public String apply() {
-
+    public String apply(){
         /* Build task script */
         String task = "    - name: " + title + "\n"
-                + "      cisco.ios.ios_config:\n"
-                + "        lines:\n"
-                + "          - transport input none\n"
-                + "        parents:\n"
-                + "          - line vty 2 4\n\n";
+                + "      debug:\n"
+                + "        msg: \"Cisco IOS version: {{ ansible_net_version }}\"\n\n";
         return task;
     }
-
+    
     /* toggle and configure STIG */
     public void configure(boolean en) {
         enable(en);

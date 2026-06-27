@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.gatech.stig.deploy.stigs.iolrouter;
+package com.gatech.stig.deploy.stigs.iosswitch;
 
+import com.gatech.stig.deploy.IP;
 import com.gatech.stig.deploy.STIG;
 import java.util.Scanner;
 
@@ -11,13 +12,14 @@ import java.util.Scanner;
  *
  * @author jmarsh40
  */
-public class CISC_ND_000010 extends STIG {
+public class CISC_ND_001450 extends STIG {
 
-    private String title = "CISC-ND-000010"; // stig ID
-    private int cat = 2;
-    private String description = "The Cisco router must be configured to limit the number of concurrent management sessions to an organization-defined number.";
-    private String sessions = "2"; // idle concurrent sessions
-
+    private String title = "CISC-ND-001450"; // stig ID
+    private int cat = 1;
+    private String description = "The Cisco router must be configured to send log data to at least two syslog servers\n for the purpose of forwarding alerts to the administrators and the ISSO.";
+    private String sysLog1 = "1.1.1.1"; // syslog server 1
+    private String sysLog2 = "2.2.2.2"; // syslog server 2
+        
     /* Return STIG info */
     public String getInfo() {
         /* Get roman numeral for STIG category and assemble output*/
@@ -45,9 +47,8 @@ public class CISC_ND_000010 extends STIG {
         String task = "    - name: " + title + "\n"
                 + "      cisco.ios.ios_config:\n"
                 + "        lines:\n"
-                + "          - session-limit " + sessions + "\n"
-                + "        parents:\n"
-                + "          - line vty 0 4\n\n";
+                + "          - logging host " + sysLog1 + "\n"
+                + "          - logging host " + sysLog2 + "\n\n";
         return task;
     }
 
@@ -57,23 +58,37 @@ public class CISC_ND_000010 extends STIG {
         if (!en) {
             return;
         }
-        /* Configure variables */
         Scanner selector = new Scanner(System.in);
         String choice = "";
 
-        /* Set idle timeout */
+        /* Set syslog 1 address */
         while (true) {
-            System.out.println("Enter the max number of concurrent management sessions (0-4294967295)");
+            System.out.println("Enter an IP address for the first syslog server");
             choice = selector.nextLine();
             try {
-                if ((Integer.parseInt(choice) >= 0)) { // Input is in range
-                    sessions = choice;
+                if (IP.check(choice)) { // Input is in range
+                    sysLog1 = choice;
                     break;
                 } else { // Input is out of range
-                    System.out.println("Value not in range");
+                    System.out.println("Not a valid IP address");
                 }
             } catch (NumberFormatException e) { // Catch non-parseable input
-                System.out.println("Value not in range");
+                System.out.println("Not a valid IP address");
+            }
+        }
+        /* Set syslog 2 address */
+        while (true) {
+            System.out.println("Enter an IP address for the second syslog server");
+            choice = selector.nextLine();
+            try {
+                if (IP.check(choice)) { // Input is in range
+                    sysLog2 = choice;
+                    break;
+                } else { // Input is out of range
+                    System.out.println("Not a valid IP address");
+                }
+            } catch (NumberFormatException e) { // Catch non-parseable input
+                System.out.println("Not a valid IP address");
             }
         }
     }

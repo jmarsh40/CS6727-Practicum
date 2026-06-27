@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.gatech.stig.deploy.stigs.iolrouter;
+package com.gatech.stig.deploy.stigs.iosswitch;
 
 import com.gatech.stig.deploy.STIG;
 import java.util.Scanner;
@@ -11,13 +11,13 @@ import java.util.Scanner;
  *
  * @author jmarsh40
  */
-public class CISC_ND_000010 extends STIG {
+public class CISC_ND_001000 extends STIG {
 
-    private String title = "CISC-ND-000010"; // stig ID
+    private String title = "CISC-ND-001000"; // stig ID
     private int cat = 2;
-    private String description = "The Cisco router must be configured to limit the number of concurrent management sessions to an organization-defined number.";
-    private String sessions = "2"; // idle concurrent sessions
-
+    private String description = "The Cisco switch must be configured to generate an alert for all audit failure events.";
+    private String level = "2"; // logging level
+    
     /* Return STIG info */
     public String getInfo() {
         /* Get roman numeral for STIG category and assemble output*/
@@ -45,9 +45,7 @@ public class CISC_ND_000010 extends STIG {
         String task = "    - name: " + title + "\n"
                 + "      cisco.ios.ios_config:\n"
                 + "        lines:\n"
-                + "          - session-limit " + sessions + "\n"
-                + "        parents:\n"
-                + "          - line vty 0 4\n\n";
+                + "          - logging trap " + level + "\n\n";
         return task;
     }
 
@@ -57,17 +55,24 @@ public class CISC_ND_000010 extends STIG {
         if (!en) {
             return;
         }
-        /* Configure variables */
         Scanner selector = new Scanner(System.in);
         String choice = "";
 
-        /* Set idle timeout */
+        /* Set logging level */
         while (true) {
-            System.out.println("Enter the max number of concurrent management sessions (0-4294967295)");
+            System.out.println("Enter logging level for syslog traps: \n"
+                    + "0: emergencies\n"
+                    + "1: alerts\n"
+                    + "2: critical\n"
+                    + "3: errors\n"
+                    + "4: warnings\n"
+                    + "5: notifications\n"
+                    + "6: informational\n"
+                    + "7: debugging");
             choice = selector.nextLine();
             try {
-                if ((Integer.parseInt(choice) >= 0)) { // Input is in range
-                    sessions = choice;
+                if ((Integer.parseInt(choice) >= 0) && (Integer.parseInt(choice) <= 7)) { // Input is in range
+                    level = choice;
                     break;
                 } else { // Input is out of range
                     System.out.println("Value not in range");

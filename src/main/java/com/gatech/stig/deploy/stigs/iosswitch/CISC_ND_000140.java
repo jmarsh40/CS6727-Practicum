@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.gatech.stig.deploy.stigs.iolrouter;
+package com.gatech.stig.deploy.stigs.iosswitch;
 
 import com.gatech.stig.deploy.IP;
 import com.gatech.stig.deploy.STIG;
@@ -16,7 +16,7 @@ public class CISC_ND_000140 extends STIG {
 
     private String title = "CISC-ND-000140"; // stig ID
     private int cat = 2;
-    private String description = "The Cisco router must be configured to enforce approved authorizations for controlling the\n flow of management information within the device based on control policies.";
+    private String description = "The Cisco switch must be configured to enforce approved authorizations for controlling the\n flow of management information within the device based on control policies.";
     private String address = "192.168.1.0"; // management subnet address
     private String mask = "0.0.0.255"; // management reverse mask
 

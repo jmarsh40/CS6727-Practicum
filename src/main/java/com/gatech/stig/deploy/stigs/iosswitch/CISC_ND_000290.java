@@ -5,17 +5,16 @@
 package com.gatech.stig.deploy.stigs.iosswitch;
 
 import com.gatech.stig.deploy.STIG;
-import java.util.Scanner;
 
 /**
  *
  * @author jmarsh40
  */
-public class CISC_ND_000010 extends STIG {
+public class CISC_ND_000290 extends STIG {
 
-    private String title = "CISC-ND-000010"; // stig ID
+    private String title = "CISC-ND-000290"; // stig ID
     private int cat = 2;
-    private String description = "The Cisco router must be configured to limit the number of concurrent management sessions to an organization-defined number.";
+    private String description = "The Cisco router must produce audit records containing information to establish where the events occurred.";
     private String sessions = "2"; // idle concurrent sessions
 
     /* Return STIG info */
@@ -43,11 +42,22 @@ public class CISC_ND_000010 extends STIG {
 
         /* Build task script */
         String task = "    - name: " + title + "\n"
-                + "      cisco.ios.ios_config:\n"
-                + "        lines:\n"
-                + "          - transport input none\n"
-                + "        parents:\n"
-                + "          - line vty 2 4\n\n";
+                + "      cisco.ios.ios_acls:\n"
+                + "        config:\n"
+                + "          - afi: ipv4\n"
+                + "            acls:\n"
+                + "              - name: BLOCK_INBOUND\n"
+                + "                acl_type: extended\n"
+                + "                aces:\n"
+                + "                  - grant: deny\n"
+                + "                    protocol: icmp\n"
+                + "                    source:\n"
+                + "                      any: true\n"
+                + "                    destination:\n"
+                + "                      any: true\n"
+                + "                    log_input:\n"
+                + "                      set: true\n"
+                + "        state: replaced\n\n";
         return task;
     }
 

@@ -5,24 +5,21 @@
 package com.gatech.stig.deploy.stigs.iosswitch;
 
 import com.gatech.stig.deploy.STIG;
-import java.util.Scanner;
 
 /**
  *
  * @author jmarsh40
  */
-public class CISC_ND_000010 extends STIG {
-
-    private String title = "CISC-ND-000010"; // stig ID
-    private int cat = 2;
-    private String description = "The Cisco router must be configured to limit the number of concurrent management sessions to an organization-defined number.";
-    private String sessions = "2"; // idle concurrent sessions
-
+public class CISC_ND_001210 extends STIG {
+    private String title = "CISC-ND-001210"; // stig ID
+    private int cat = 1; // stig category
+    private String description = "The Cisco switch must be configured to implement cryptographic mechanisms to protect the\n confidentiality of remote maintenance sessions.";
+    
     /* Return STIG info */
-    public String getInfo() {
+    public String getInfo(){
         /* Get roman numeral for STIG category and assemble output*/
         String c = "Uncategorized";
-        switch (cat) {
+        switch(cat) {
             case 1:
                 c = "I";
                 break;
@@ -37,20 +34,19 @@ public class CISC_ND_000010 extends STIG {
                 + "Enabled: " + String.valueOf(enabled);
         return info;
     }
-
+    
     /* return the text of the script to be written to the ansible playbook */
-    public String apply() {
-
+    public String apply(){
         /* Build task script */
         String task = "    - name: " + title + "\n"
                 + "      cisco.ios.ios_config:\n"
                 + "        lines:\n"
-                + "          - transport input none\n"
-                + "        parents:\n"
-                + "          - line vty 2 4\n\n";
+                + "          - ip ssh version 2\n"
+                + "          - ip ssh server algorithm mac hmac-sha2-256 hmac-sha2-512\n"
+                + "          - ip http secure-ciphersuite aes-128-cbc-sha aes-256-cbc-sha\n\n";
         return task;
     }
-
+    
     /* toggle and configure STIG */
     public void configure(boolean en) {
         enable(en);

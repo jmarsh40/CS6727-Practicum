@@ -5,18 +5,15 @@
 package com.gatech.stig.deploy.stigs.iosswitch;
 
 import com.gatech.stig.deploy.STIG;
-import java.util.Scanner;
 
 /**
  *
  * @author jmarsh40
  */
-public class CISC_ND_000010 extends STIG {
-
-    private String title = "CISC-ND-000010"; // stig ID
-    private int cat = 2;
-    private String description = "The Cisco router must be configured to limit the number of concurrent management sessions to an organization-defined number.";
-    private String sessions = "2"; // idle concurrent sessions
+public class CISC_ND_000380 extends STIG {
+    private String title = "CISC-ND-000380"; // stig ID
+    private int cat = 2; // stig category
+    private String description = "The Cisco switch must be configured to protect audit information from unauthorized modification.";
 
     /* Return STIG info */
     public String getInfo() {
@@ -40,17 +37,14 @@ public class CISC_ND_000010 extends STIG {
 
     /* return the text of the script to be written to the ansible playbook */
     public String apply() {
-
         /* Build task script */
         String task = "    - name: " + title + "\n"
                 + "      cisco.ios.ios_config:\n"
                 + "        lines:\n"
-                + "          - transport input none\n"
-                + "        parents:\n"
-                + "          - line vty 2 4\n\n";
+                + "          - file privilege 15\n\n";
         return task;
     }
-
+    
     /* toggle and configure STIG */
     public void configure(boolean en) {
         enable(en);
