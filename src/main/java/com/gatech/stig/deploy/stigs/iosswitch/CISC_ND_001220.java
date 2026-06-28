@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.gatech.stig.deploy.stigs.iolrouter;
+package com.gatech.stig.deploy.stigs.iosswitch;
 
 import com.gatech.stig.deploy.IP;
 import com.gatech.stig.deploy.STIG;
@@ -16,7 +16,7 @@ public class CISC_ND_001220 extends STIG {
 
     private String title = "CISC-ND-001220"; // stig ID
     private int cat = 2;
-    private String description = "The Cisco router must be configured to protect against known types of denial-of-service (DoS) attacks\n by employing organization-defined security safeguards.";
+    private String description = "The Cisco switch must be configured to protect against known types of denial-of-service (DoS) attacks\n by employing organization-defined security safeguards.";
     private String ospf = "10.1.0.1"; // osfp host address
     private String pim = "10.1.0.2"; // pim host address
     private String igmp = "10.10.10.0"; // igmp subnet address

@@ -176,6 +176,7 @@ public class Switch extends Device {
         sList.add(new CISC_ND_001150());
         sList.add(new CISC_ND_001200());
         sList.add(new CISC_ND_001210());
+        sList.add(new CISC_ND_001220());
         sList.add(new CISC_ND_001250());
         sList.add(new CISC_ND_001260());
         sList.add(new CISC_ND_001270());
