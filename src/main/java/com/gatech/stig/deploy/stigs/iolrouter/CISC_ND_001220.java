@@ -24,7 +24,7 @@ public class CISC_ND_001220 extends STIG {
     private String tcp1 = "10.0.0.5"; // tcp 1 host address
     private String tcp2 = "10.0.0.6"; // tcp 1 host address
     private String tcp3 = "10.0.0.7"; // tcp 1 host address
-    private String tcp4 = "10.10.11.0"; // tcp 4 subnet address
+    private String tcp4 = "192.168.1.0"; // tcp 4 subnet address
     private String tcp4Mask = "0.0.0.255"; // management subnet address
     private String snmp = "10.1.0.3"; // management subnet address
     private String ntp = "10.1.0.4"; // management subnet address
