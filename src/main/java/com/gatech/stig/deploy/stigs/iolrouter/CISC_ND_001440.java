@@ -14,9 +14,9 @@ import java.util.Scanner;
  */
 public class CISC_ND_001440 extends STIG {
 
-    private String title = "CISC-ND-001440"; // stig ID
-    private int cat = 2; // stig category
-    private String description = "The Cisco router must be configured to obtain its public key certificates from an appropriate certificate policy through an approved service provider.";
+    private final String title = "CISC-ND-001440"; // stig ID
+    private final int cat = 2; // stig category
+    private final String description = "The Cisco router must be configured to obtain its public key certificates from an appropriate certificate policy through an approved service provider.";
     private String ca = "CA_X"; // certificate authority name
     private String url = "http://trustpoint1.example.com"; // CA enrollment URL
         

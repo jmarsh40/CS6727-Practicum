@@ -14,9 +14,9 @@ import java.util.Scanner;
  */
 public class CISC_ND_001410 extends STIG {
 
-    private String title = "CISC-ND-001410"; // stig ID
-    private int cat = 2; // stig category
-    private String description = "The Cisco router must be configured to authenticate SNMP messages using a\n FIPS-validated Keyed-Hash Message Authentication Code (HMAC).";
+    private final String title = "CISC-ND-001410"; // stig ID
+    private final int cat = 2; // stig category
+    private final String description = "The Cisco router must be configured to authenticate SNMP messages using a\n FIPS-validated Keyed-Hash Message Authentication Code (HMAC).";
     private String server = "1.1.1.1"; // SCP backup server
         
     /* Return STIG info */

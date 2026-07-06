@@ -13,9 +13,9 @@ import java.util.Scanner;
  */
 public class CISC_ND_001000 extends STIG {
 
-    private String title = "CISC-ND-001000"; // stig ID
-    private int cat = 2;
-    private String description = "The Cisco switch must be configured to generate an alert for all audit failure events.";
+    private final String title = "CISC-ND-001000"; // stig ID
+    private final int cat = 2;
+    private final String description = "The Cisco switch must be configured to generate an alert for all audit failure events.";
     private String level = "2"; // logging level
     
     /* Return STIG info */

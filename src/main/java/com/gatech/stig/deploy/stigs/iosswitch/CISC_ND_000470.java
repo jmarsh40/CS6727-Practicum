@@ -11,9 +11,9 @@ import com.gatech.stig.deploy.STIG;
  * @author jmarsh40
  */
 public class CISC_ND_000470 extends STIG {
-    private String title = "CISC-ND-000470"; // stig ID
-    private int cat = 1; // stig category
-    private String description = "The Cisco switch must be configured to prohibit the use of all unnecessary and nonsecure functions and services.";
+    private final String title = "CISC-ND-000470"; // stig ID
+    private final int cat = 1; // stig category
+    private final String description = "The Cisco switch must be configured to prohibit the use of all unnecessary and nonsecure functions and services.";
     
     /* Return STIG info */
     public String getInfo(){

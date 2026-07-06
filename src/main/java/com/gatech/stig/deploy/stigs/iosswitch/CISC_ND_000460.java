@@ -11,9 +11,9 @@ import com.gatech.stig.deploy.STIG;
  * @author jmarsh40
  */
 public class CISC_ND_000460 extends STIG {
-    private String title = "CISC-ND-000460"; // stig ID
-    private int cat = 2; // stig category
-    private String description = "The Cisco switch must be configured to limit privileges to change the\n software resident within software libraries.";
+    private final String title = "CISC-ND-000460"; // stig ID
+    private final int cat = 2; // stig category
+    private final String description = "The Cisco switch must be configured to limit privileges to change the\n software resident within software libraries.";
     
     /* Return STIG info */
     public String getInfo(){

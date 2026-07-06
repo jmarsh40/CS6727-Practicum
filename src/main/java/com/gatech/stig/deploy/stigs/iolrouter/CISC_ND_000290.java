@@ -12,10 +12,9 @@ import com.gatech.stig.deploy.STIG;
  */
 public class CISC_ND_000290 extends STIG {
 
-    private String title = "CISC-ND-000290"; // stig ID
-    private int cat = 2;
-    private String description = "The Cisco router must produce audit records containing information to establish where the events occurred.";
-    private String sessions = "2"; // idle concurrent sessions
+    private final String title = "CISC-ND-000290"; // stig ID
+    private final int cat = 2;
+    private final String description = "The Cisco router must produce audit records containing information to establish where the events occurred.";
 
     /* Return STIG info */
     public String getInfo() {

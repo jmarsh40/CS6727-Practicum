@@ -13,9 +13,9 @@ import java.util.Scanner;
  */
 public class CISC_ND_000720 extends STIG {
 
-    private String title = "CISC-ND-000720"; // stig ID
-    private int cat = 1;
-    private String description = "The Cisco switch must be configured to terminate all network connections\n associated with device management after five minutes of inactivity.";
+    private final String title = "CISC-ND-000720"; // stig ID
+    private final int cat = 1;
+    private final String description = "The Cisco switch must be configured to terminate all network connections\n associated with device management after five minutes of inactivity.";
     private String idle = "300"; // idle timout seconds
     private String life = "120"; // http connection life seconds
     private String requests = "100"; // http max requests

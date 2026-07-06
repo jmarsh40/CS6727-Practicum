@@ -13,14 +13,15 @@ import java.util.Scanner;
  * @author jmarsh40
  */
 public class Router extends Device{
-    private String menu = "Please select an option: \n"
-            + "1: List STIGs\n"
-            + "2: Enable/Disable STIGs\n"
-            + "3: Change name\n"
-            + "4: Add IP addresses\n"
-            + "5: Enable all STIGs with default values\n"
-            + "6: Configure all STIGs:\n"
-            + "7: Return to Configuration menu";
+    private final String menu = """
+                          Please select an option: 
+                          1: List STIGs
+                          2: Enable/Disable STIGs
+                          3: Change name
+                          4: Add IP addresses
+                          5: Enable all STIGs with default values
+                          6: Configure all STIGs
+                          7: Return to Configuration menu""";
     
     /* Constructor to load STIGs */
     public Router() {
@@ -186,9 +187,5 @@ public class Router extends Device{
         sList.add(new CISC_ND_001440());
         sList.add(new CISC_ND_001450());
         sList.add(new CISC_ND_001470());
-    }
-    /* Print STIG information */
-    public void printStigs() {
-        /* TBD */
     }
 }

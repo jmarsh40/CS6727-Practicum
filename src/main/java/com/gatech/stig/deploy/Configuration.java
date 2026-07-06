@@ -4,14 +4,8 @@
  */
 package com.gatech.stig.deploy;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Reader;
-import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -27,18 +21,18 @@ import java.util.List;
 public class Configuration {
 
     public String name = "New Configuration"; // configuration name
-    private String menu = "Please Select an option: \n"
-            + "1: Create New Device \n"
-            + "2: Edit Configured Devices \n"
-            + "3: Deploy Conguration \n"
-            + "4: Save Configuration\n"
-            + "5: Return to main menu ";
-    //private Device[] dList; // list of devices in configuration
+    private final String menu = """
+                          Please Select an option: 
+                          1: Create New Device 
+                          2: Edit Configured Devices 
+                          3: Send Configuration to Ansible playbooks 
+                          4: Return to main menu """;
+    private final String dTypes = """
+                            Possible Devices:
+                            1: Cisco IOS Router 
+                            2: Cisco IOL Switch 
+                            3: Return to Configuration menu """;
     private List<Device> dList = new ArrayList<>(); // list of devices in configuration
-    private String dTypes = "Possible Devices:\n"
-            + "1: Cisco IOS Router \n"
-            + "2: Cisco IOL Switch \n"
-            + "3: Return to Configuration menu ";
 
     /* Edit the configuration */
     public void editConfig() {
@@ -110,9 +104,7 @@ public class Configuration {
                 System.out.println("Building Ansible playbooks...\n");
                 deployConfig();
                 System.out.println("Configuration successfully deployed!");
-            } else if ("4".equals(choice)) { // Select 4 - save configuration
-                saveConfig();
-            } else if ("5".equals(choice)) { // Select 5 - exit
+            } else if ("4".equals(choice)) { // Select 5 - exit
                 return;
             } else { // Discard other input
                 System.out.println("Please select one of the options below\n");
@@ -121,44 +113,43 @@ public class Configuration {
     }
 
     /* Save the configuration */
-    public void saveConfig() {
-        /* TBD */
-        /* Check for empty device list */
-        if ((dList == null) || dList.isEmpty()) {
-            System.out.println("There are no configured devices\n");
-            return;
-        }
-        String fileName = "save.json";
-//        File jFile = new File(fileName);
-//        List<List<String>> out = new ArrayList<>();
-//        for (Device device : dList) {
-        //fileName = device.getName() + ".json";
-        //jFile = new File(fileName + ".json");
-//            out.add(device.save());
-
-        Gson gson = new Gson();
-        try {
-            gson.toJson(dList, new FileWriter(fileName));
-        } catch (IOException e) {
-            System.out.println("Could not write to file\n");
-        }
-    }
+//    public void saveConfig() {
+//        /* TBD */
+//        /* Check for empty device list */
+//        if ((dList == null) || dList.isEmpty()) {
+//            System.out.println("There are no configured devices\n");
+//            return;
+//        }
+//        String fileName = "save.json";
+////        File jFile = new File(fileName);
+////        List<List<String>> out = new ArrayList<>();
+////        for (Device device : dList) {
+//        //fileName = device.getName() + ".json";
+//        //jFile = new File(fileName + ".json");
+////            out.add(device.save());
+//
+//        Gson gson = new Gson();
+//        try {
+//            gson.toJson(dList, new FileWriter(fileName));
+//        } catch (IOException e) {
+//            System.out.println("Could not write to file\n");
+//        }
+//    }
     
-    public void loadConfig(){
-        String fileName = "save.json";
-        Gson gson = new Gson();
-        try {
-        Reader read = new FileReader(fileName);
-        Type savedObjects = new TypeToken<ArrayList<Device>>() {}.getType();
-        dList = gson.fromJson(read, savedObjects);
-        } catch (IOException e) {
-            System.out.println("Could not open file\n");
-        }
-    }
+//    public void loadConfig(){
+//        String fileName = "save.json";
+//        Gson gson = new Gson();
+//        try {
+//        Reader read = new FileReader(fileName);
+//        Type savedObjects = new TypeToken<ArrayList<Device>>() {}.getType();
+//        dList = gson.fromJson(read, savedObjects);
+//        } catch (IOException e) {
+//            System.out.println("Could not open file\n");
+//        }
+//    }
 
     /* Deploy the configuration */
     public void deployConfig() {
-        /* TBD */
         /* Check for empty device list */
         if (dList.isEmpty()) {
             System.out.println("There are no configured devices\n");
@@ -208,7 +199,6 @@ public class Configuration {
         File iFile = new File(fileName);
         try {
             /* Create a new inventory file */
-
             if (iFile.createNewFile()) {
                 System.out.println("Created inventory file");
             } else {
@@ -216,13 +206,16 @@ public class Configuration {
             }
 
             /* Ansible connection variables */
-            String script = "[all:vars]\n"
-                    + "ansible_connection = ansible.netcommon.network_cli\n"
-                    + "ansible_network_os = cisco.ios.ios\n"
-                    + "ansible_become = true\n"
-                    + "ansible_become_password = cisco\n"
-                    + "ansible_user = cisco\n"
-                    + "ansible_password = password\n\n";
+            String script = """
+                            [all:vars]
+                            ansible_connection = ansible.netcommon.network_cli
+                            ansible_network_os = cisco.ios.ios
+                            ansible_become = true
+                            ansible_become_password = cisco
+                            ansible_user = cisco
+                            ansible_password = password
+                            
+                            """;
             /* Add devices and addresses */
             for (Device inv : dList) {
                 script += "[" + inv.getName() + "]\n"

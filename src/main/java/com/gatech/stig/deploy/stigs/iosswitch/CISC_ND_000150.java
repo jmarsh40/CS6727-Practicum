@@ -11,9 +11,9 @@ import com.gatech.stig.deploy.STIG;
  * @author jmarsh40
  */
 public class CISC_ND_000150 extends STIG {
-    private String title = "CISC-ND-000150"; // stig ID
-    private int cat = 2; // stig category
-    private String description = "The Cisco switch must be configured to enforce the limit of three consecutive invalid logon attempts, \nafter which time it must lock out the user account from accessing the device for 15 minutes.";
+    private final String title = "CISC-ND-000150"; // stig ID
+    private final int cat = 2; // stig category
+    private final String description = "The Cisco switch must be configured to enforce the limit of three consecutive invalid logon attempts, \nafter which time it must lock out the user account from accessing the device for 15 minutes.";
     
     /* Return STIG info */
     public String getInfo(){

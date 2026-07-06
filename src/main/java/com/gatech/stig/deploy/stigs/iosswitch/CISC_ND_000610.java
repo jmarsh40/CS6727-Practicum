@@ -11,9 +11,9 @@ import com.gatech.stig.deploy.STIG;
  * @author jmarsh40
  */
 public class CISC_ND_000610 extends STIG {
-    private String title = "CISC-ND-000610"; // stig ID
-    private int cat = 2;
-    private String description = "The Cisco switch must be configured to require that when a password is changed, the characters are changed\n in at least eight of the positions within the password.";
+    private final String title = "CISC-ND-000610"; // stig ID
+    private final int cat = 2;
+    private final String description = "The Cisco switch must be configured to require that when a password is changed, the characters are changed\n in at least eight of the positions within the password.";
     
     /* Return STIG info */
     public String getInfo(){

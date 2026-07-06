@@ -4,8 +4,6 @@
  */
 package com.gatech.stig.deploy;
 
-import java.util.Arrays;
-
 /**
  *
  * @author jmarsh40

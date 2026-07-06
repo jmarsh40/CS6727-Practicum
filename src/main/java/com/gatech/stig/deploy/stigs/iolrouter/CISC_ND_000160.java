@@ -11,9 +11,9 @@ import com.gatech.stig.deploy.STIG;
  * @author jmarsh40
  */
 public class CISC_ND_000160 extends STIG {
-    private String title = "CISC-ND-000160"; // stig ID
-    private int cat = 2; // stig category
-    private String description = "The Cisco router must be configured to display the Standard Mandatory DoD Notice and Consent Banner \nbefore granting access to the device.";
+    private final String title = "CISC-ND-000160"; // stig ID
+    private final int cat = 2; // stig category
+    private final String description = "The Cisco router must be configured to display the Standard Mandatory DoD Notice and Consent Banner \nbefore granting access to the device.";
 
     /* Return STIG info */
     public String getInfo(){

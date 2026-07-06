@@ -14,9 +14,9 @@ import java.util.Scanner;
  */
 public class CISC_ND_001130 extends STIG {
 
-    private String title = "CISC-ND-001130"; // stig ID
-    private int cat = 2; // stig category
-    private String description = "The Cisco switch must be configured to authenticate SNMP messages using a\n FIPS-validated Keyed-Hash Message Authentication Code (HMAC).";
+    private final String title = "CISC-ND-001130"; // stig ID
+    private final int cat = 2; // stig category
+    private final String description = "The Cisco switch must be configured to authenticate SNMP messages using a\n FIPS-validated Keyed-Hash Message Authentication Code (HMAC).";
     private String group = "V3GROUP"; // SNMP group name
     private String read = "V3READ"; // SNMP read name
     private String write = "V3WRITE"; // SNMP write name

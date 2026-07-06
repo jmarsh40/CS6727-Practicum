@@ -11,9 +11,9 @@ import com.gatech.stig.deploy.STIG;
  * @author jmarsh40
  */
 public class CISC_ND_000620 extends STIG {
-    private String title = "CISC-ND-000620"; // stig ID
-    private int cat = 1;
-    private String description = "The Cisco router must only store cryptographic representations of passwords.";
+    private final String title = "CISC-ND-000620"; // stig ID
+    private final int cat = 1;
+    private final String description = "The Cisco router must only store cryptographic representations of passwords.";
     
     /* Return STIG info */
     public String getInfo(){

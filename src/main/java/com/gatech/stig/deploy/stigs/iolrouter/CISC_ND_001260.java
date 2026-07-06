@@ -11,9 +11,9 @@ import com.gatech.stig.deploy.STIG;
  * @author jmarsh40
  */
 public class CISC_ND_001260 extends STIG {
-    private String title = "CISC-ND-001260"; // stig ID
-    private int cat = 2; // stig category
-    private String description = "The Cisco router must be configured to generate audit records when successful/unsuccessful\n logon attempts occur.";
+    private final String title = "CISC-ND-001260"; // stig ID
+    private final int cat = 2; // stig category
+    private final String description = "The Cisco router must be configured to generate audit records when successful/unsuccessful\n logon attempts occur.";
     
     /* Return STIG info */
     public String getInfo(){

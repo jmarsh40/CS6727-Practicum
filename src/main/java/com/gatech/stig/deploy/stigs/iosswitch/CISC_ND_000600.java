@@ -11,9 +11,9 @@ import com.gatech.stig.deploy.STIG;
  * @author jmarsh40
  */
 public class CISC_ND_000600 extends STIG {
-    private String title = "CISC-ND-000600"; // stig ID
-    private int cat = 2;
-    private String description = "The Cisco switch must be configured to enforce password complexity by requiring that\n at least one special character be used.";
+    private final String title = "CISC-ND-000600"; // stig ID
+    private final int cat = 2; // stig category
+    private final String description = "The Cisco switch must be configured to enforce password complexity by requiring that\n at least one special character be used.";
     
     /* Return STIG info */
     public String getInfo(){

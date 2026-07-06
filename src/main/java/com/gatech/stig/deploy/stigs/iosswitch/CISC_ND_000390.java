@@ -11,9 +11,9 @@ import com.gatech.stig.deploy.STIG;
  * @author jmarsh40
  */
 public class CISC_ND_000390 extends STIG {
-    private String title = "CISC-ND-000390"; // stig ID
-    private int cat = 2; // stig category
-    private String description = "The Cisco switch must be configured to protect audit information from unauthorized deletion.";
+    private final String title = "CISC-ND-000390"; // stig ID
+    private final int cat = 2; // stig category
+    private final String description = "The Cisco switch must be configured to protect audit information from unauthorized deletion.";
     
     /* Return STIG info */
     public String getInfo(){

@@ -11,9 +11,9 @@ import com.gatech.stig.deploy.STIG;
  * @author jmarsh40
  */
 public class CISC_ND_000550 extends STIG {
-    private String title = "CISC-ND-000550"; // stig ID
-    private int cat = 2; // stig category
-    private String description = "The Cisco router must be configured to enforce a minimum 15-character password length.";
+    private final String title = "CISC-ND-000550"; // stig ID
+    private final int cat = 2; // stig category
+    private final String description = "The Cisco router must be configured to enforce a minimum 15-character password length.";
     
     /* Return STIG info */
     public String getInfo(){

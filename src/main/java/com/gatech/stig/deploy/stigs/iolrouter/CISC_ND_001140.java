@@ -4,8 +4,10 @@
  */
 package com.gatech.stig.deploy.stigs.iolrouter;
 
-import com.gatech.stig.deploy.IP;
 import com.gatech.stig.deploy.STIG;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Scanner;
 
 /**
@@ -14,9 +16,9 @@ import java.util.Scanner;
  */
 public class CISC_ND_001140 extends STIG {
 
-    private String title = "CISC-ND-001140"; // stig ID
-    private int cat = 2; // stig category
-    private String description = "The Cisco router must be configured to encrypt SNMP messages using a FIPS 140-2 approved algorithm.";
+    private final String title = "CISC-ND-001140"; // stig ID
+    private final int cat = 2; // stig category
+    private final String description = "The Cisco router must be configured to encrypt SNMP messages using a FIPS 140-2 approved algorithm.";
     private String group = "V3GROUP"; // SNMP group name
     private String read = "V3READ"; // SNMP read name
     private String write = "V3WRITE"; // SNMP write name
@@ -138,7 +140,7 @@ public class CISC_ND_001140 extends STIG {
                 }
             } catch (NumberFormatException e) { // Catch non-parseable input
                 System.out.println("Value not in range");
-            }
+            } 
         }
         /* Set snmp user privacy password */
         while (true) {
@@ -157,6 +159,38 @@ public class CISC_ND_001140 extends STIG {
         }
     }
     
+    /* Get Hash for passwords */
+    public String getHash(String pass, int len) {
+        String out = "";
+
+        try {
+            Runtime rt = Runtime.getRuntime();
+            String[] commands = {"system.exe", "openssl passwd -salt `openssl rand -base64 3` -1 \"cleartext\""};
+            Process proc = rt.exec(commands);
+
+            BufferedReader stdInput = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+
+            BufferedReader stdError = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
+
+            // Read the output from the command
+            System.out.println("Here is the standard output of the command:\n");
+            String s = null;
+            while ((s = stdInput.readLine()) != null) {
+                System.out.println(s);
+            }
+
+            // Read any errors from the attempted command
+            System.out.println("Here is the standard error of the command (if any):\n");
+            while ((s = stdError.readLine()) != null) {
+                System.out.println(s);
+            }
+        } catch (IOException e) {
+
+        }
+
+        return out;
+    }
+
     /* Get STIG Category */
     public int getCat(){
         return cat;

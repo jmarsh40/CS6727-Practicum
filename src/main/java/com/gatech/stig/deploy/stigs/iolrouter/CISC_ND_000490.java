@@ -13,9 +13,9 @@ import java.util.Scanner;
  */
 public class CISC_ND_000490 extends STIG {
 
-    private String title = "CISC-ND-000490"; // stig ID
-    private int cat = 2; // stig category
-    private String description = "The Cisco router must be configured with only one local account to be used as the\n account of last resort in the event the authentication server is unavailable.";
+    private final String title = "CISC-ND-000490"; // stig ID
+    private final int cat = 2; // stig category
+    private final String description = "The Cisco router must be configured with only one local account to be used as the\n account of last resort in the event the authentication server is unavailable.";
     private String user = "cisco"; // local username
         
     /* Return STIG info */

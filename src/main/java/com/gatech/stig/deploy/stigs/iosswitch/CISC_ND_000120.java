@@ -11,9 +11,9 @@ import com.gatech.stig.deploy.STIG;
  * @author jmarsh40
  */
 public class CISC_ND_000120 extends STIG {
-    private String title = "CISC-ND-000120"; // stig ID
-    private int cat = 2; // stig category
-    private String description = "The Cisco switch must be configured to automatically audit account removal actions.";
+    private final String title = "CISC-ND-000120"; // stig ID
+    private final int cat = 2; // stig category
+    private final String description = "The Cisco switch must be configured to automatically audit account removal actions.";
     
     /* Return STIG info */
     public String getInfo(){

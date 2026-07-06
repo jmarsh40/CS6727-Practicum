@@ -14,9 +14,9 @@ import java.util.Scanner;
  */
 public class CISC_ND_001150 extends STIG {
 
-    private String title = "CISC-ND-001150"; // stig ID
-    private int cat = 2; // stig category
-    private String description = "The Cisco switch must be configured to authenticate Network Time Protocol (NTP) sources\n using authentication with FIPS-compliant algorithms.";
+    private final String title = "CISC-ND-001150"; // stig ID
+    private final int cat = 2; // stig category
+    private final String description = "The Cisco switch must be configured to authenticate Network Time Protocol (NTP) sources\n using authentication with FIPS-compliant algorithms.";
     private String ntp1 = "1.1.1.1"; // NTP primary server host
     private String ntp2 = "2.2.2.2"; // NTP secondary host
     private String key = "ntpkey"; // NTP authentication key

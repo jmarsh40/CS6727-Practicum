@@ -14,9 +14,9 @@ import java.util.Scanner;
  */
 public class CISC_ND_001220 extends STIG {
 
-    private String title = "CISC-ND-001220"; // stig ID
-    private int cat = 2;
-    private String description = "The Cisco switch must be configured to protect against known types of denial-of-service (DoS) attacks\n by employing organization-defined security safeguards.";
+    private final String title = "CISC-ND-001220"; // stig ID
+    private final int cat = 2;
+    private final String description = "The Cisco switch must be configured to protect against known types of denial-of-service (DoS) attacks\n by employing organization-defined security safeguards.";
     private String ospf = "10.1.0.1"; // osfp host address
     private String pim = "10.1.0.2"; // pim host address
     private String igmp = "10.10.10.0"; // igmp subnet address

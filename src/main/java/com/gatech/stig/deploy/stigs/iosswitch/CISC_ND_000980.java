@@ -12,9 +12,9 @@ import java.util.Scanner;
  * @author jmarsh40
  */
 public class CISC_ND_000980 extends STIG {
-    private String title = "CISC-ND-000980"; // stig ID
-    private int cat = 2;
-    private String description = "The Cisco switch must be configured to allocate audit record storage capacity \nin accordance with organization-defined audit record storage requirements.";
+    private final String title = "CISC-ND-000980"; // stig ID
+    private final int cat = 2;
+    private final String description = "The Cisco switch must be configured to allocate audit record storage capacity \nin accordance with organization-defined audit record storage requirements.";
     private String buffer = "4096"; // idle timout seconds
     private String level = "3"; // logging level
         

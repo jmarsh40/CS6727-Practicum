@@ -14,9 +14,9 @@ import java.util.Scanner;
  */
 public class CISC_ND_001030 extends STIG {
 
-    private String title = "CISC-ND-001030"; // stig ID
-    private int cat = 2;
-    private String description = "The Cisco router must be configured to synchronize its clock with the primary\n and secondary time sources using redundant authoritative time sources.";
+    private final String title = "CISC-ND-001030"; // stig ID
+    private final int cat = 2;
+    private final String description = "The Cisco router must be configured to synchronize its clock with the primary\n and secondary time sources using redundant authoritative time sources.";
     private String ntp1 = "1.1.1.1"; // ntp server 1
     private String ntp2 = "2.2.2.2"; // ntp server 2
         

@@ -14,9 +14,9 @@ import java.util.Scanner;
  */
 public class CISC_ND_000140 extends STIG {
 
-    private String title = "CISC-ND-000140"; // stig ID
-    private int cat = 2;
-    private String description = "The Cisco switch must be configured to enforce approved authorizations for controlling the\n flow of management information within the device based on control policies.";
+    private final String title = "CISC-ND-000140"; // stig ID
+    private final int cat = 2;
+    private final String description = "The Cisco switch must be configured to enforce approved authorizations for controlling the\n flow of management information within the device based on control policies.";
     private String address = "192.168.1.0"; // management subnet address
     private String mask = "0.0.0.255"; // management reverse mask
 

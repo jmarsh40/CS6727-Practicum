@@ -13,9 +13,9 @@ import java.util.Scanner;
  */
 public class CISC_ND_001140 extends STIG {
 
-    private String title = "CISC-ND-001140"; // stig ID
-    private int cat = 2; // stig category
-    private String description = "The Cisco switch must be configured to encrypt SNMP messages using a FIPS 140-2 approved algorithm.";
+    private final String title = "CISC-ND-001140"; // stig ID
+    private final int cat = 2; // stig category
+    private final String description = "The Cisco switch must be configured to encrypt SNMP messages using a FIPS 140-2 approved algorithm.";
     private String group = "V3GROUP"; // SNMP group name
     private String read = "V3READ"; // SNMP read name
     private String write = "V3WRITE"; // SNMP write name
