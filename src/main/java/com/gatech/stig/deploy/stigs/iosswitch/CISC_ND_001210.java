@@ -42,7 +42,7 @@ public class CISC_ND_001210 extends STIG {
                 + "      cisco.ios.ios_config:\n"
                 + "        lines:\n"
                 + "          - ip ssh version 2\n"
-                + "          - ip ssh server algorithm mac hmac-sha2-256 hmac-sha2-512\n"
+                + "          - ip ssh server algorithm encryption aes256-ctr aes192-ctr aes128-ctr\n"
                 + "          - ip http secure-ciphersuite aes-128-cbc-sha aes-256-cbc-sha\n\n";
         return task;
     }

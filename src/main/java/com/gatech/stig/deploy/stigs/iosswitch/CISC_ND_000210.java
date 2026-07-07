@@ -38,7 +38,11 @@ public class CISC_ND_000210 extends STIG {
     /* return the text of the script to be written to the ansible playbook */
     public String apply(){
         /* Build task script */
-        String task = "    - name: " + title + "\n"
+        String task = "    - name: " + title + " - userinfo\n"
+                + "      cisco.ios.ios_config:\n"
+                + "        lines:\n"
+                + "          - logging userinfo\n\n"
+                + "    - name: " + title + " - log\n"
                 + "      cisco.ios.ios_config:\n"
                 + "        lines:\n"
                 + "          - logging enable\n"
