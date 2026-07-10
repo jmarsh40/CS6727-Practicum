@@ -25,7 +25,7 @@ public class Configuration {
                           Please Select an option: 
                           1: Create New Device 
                           2: Edit Configured Devices 
-                          3: Send Configuration to Ansible playbooks 
+                          3: Create configuration playbooks 
                           4: Return to main menu """;
     private final String dTypes = """
                             Possible Devices:
@@ -50,28 +50,54 @@ public class Configuration {
                     System.out.println(dTypes);
                     choice = selector.nextLine();
                     if ("1".equals(choice)) { // Configure new router
-                        Device temp = new Router();
                         /* Get hostname and IP address */
                         System.out.println("Please enter a device name.");
                         String hostName = selector.nextLine();
-                        temp.setName(hostName);
-                        /* Configure the new device */
-                        System.out.println("Configuring " + hostName);
-                        temp.editDevice();
-                        /* Add the new device to the configuration */
-                        dList.add(temp);
+                        boolean newName = true;
+                        /* Check for new device name */
+                        for (Device d : dList) {
+                            if (d.getName().equals(hostName)) {
+                                newName = false;
+                                break;
+                            }
+                        }
+                        /* Create new router if not duplicate */
+                        if (newName) {
+                            Device temp = new Router();
+                            temp.setName(hostName);
+                            /* Configure the new device */
+                            System.out.println("Configuring " + hostName);
+                            temp.editDevice();
+                            /* Add the new device to the configuration */
+                            dList.add(temp);
+                        } else {
+                            System.out.println("Please enter a new device name\n");
+                        }
                         break;
-                    } else if ("2".equals(choice)) { // Configure new switch
-                        Device temp = new Switch();
+                    } else if ("2".equals(choice)) { // Configure new switch                        
                         /* Get hostname and IP address */
                         System.out.println("Please enter a device name.");
                         String hostName = selector.nextLine();
-                        temp.setName(hostName);
-                        /* Configure the new device */
-                        System.out.println("Configuring " + hostName);
-                        temp.editDevice();
-                        /* Add the new device to the configuration */
-                        dList.add(temp);
+                        boolean newName = true;
+                        /* Check for new device name */
+                        for (Device d : dList) {
+                            if (d.getName().equals(hostName)) {
+                                newName = false;
+                                break;
+                            }
+                        }
+                        /* Create new switch if not duplicate */
+                        if (newName) {
+                            Device temp = new Switch();
+                            temp.setName(hostName);
+                            /* Configure the new device */
+                            System.out.println("Configuring " + hostName);
+                            temp.editDevice();
+                            /* Add the new device to the configuration */
+                            dList.add(temp);
+                        } else {
+                            System.out.println("Please enter a new device name\n");
+                        }
                         break;
                     } else if ("3".equals(choice)) { // Return to Configuration menu
                         break;
@@ -103,7 +129,7 @@ public class Configuration {
                 buildInventory();
                 System.out.println("Building Ansible playbooks...\n");
                 deployConfig();
-                System.out.println("Configuration successfully deployed!");
+                System.out.println("Playbooks successfully written!");
             } else if ("4".equals(choice)) { // Select 5 - exit
                 return;
             } else { // Discard other input

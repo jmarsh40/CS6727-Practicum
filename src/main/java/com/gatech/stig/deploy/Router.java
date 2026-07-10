@@ -87,7 +87,7 @@ public class Router extends Device{
                     /* List STIGs */
                     System.out.println("Select a STIG benchmark: ");
                     for (STIG stig : sList) {
-                        System.out.println(i + ": " + stig.getInfo());
+                        System.out.println(i + ": " + stig.getInfo() + "\n");
                         i++;
                     }
                     /* Select one of the listed STIGs */
@@ -187,5 +187,6 @@ public class Router extends Device{
         sList.add(new CISC_ND_001440());
         sList.add(new CISC_ND_001450());
         sList.add(new CISC_ND_001470());
+        //sList.add(new CISC_RT_000160());
     }
 }

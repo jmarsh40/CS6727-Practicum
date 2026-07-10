@@ -23,4 +23,20 @@
         <maven.compiler.release>25</maven.compiler.release>
         <exec.mainClass>com.gatech.stig.deploy.StigDeploy</exec.mainClass>
     </properties>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.gatech.stig.deploy.StigDeploy</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

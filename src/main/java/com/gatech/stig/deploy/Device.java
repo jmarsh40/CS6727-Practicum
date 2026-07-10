@@ -56,8 +56,13 @@ abstract public class Device {
             choice = selector.nextLine();
             /* Check for valid address */
             if (IP.check(choice)) {
-                System.out.println("Adding " + choice + " to address list");
-                addresses.add(choice);
+                /* Check for duplicate address */
+                if (addresses.contains(choice)) {
+                    System.out.println(choice + " is already in the address list");
+                } else {
+                    System.out.println("Adding " + choice + " to address list\n");
+                    addresses.add(choice);
+                }
             } else if ("done".equals(choice)) {
                 return;
             } else {
