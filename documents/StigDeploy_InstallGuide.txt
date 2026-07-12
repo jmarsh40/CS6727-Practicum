@@ -1,0 +1,53 @@
+-Ansible Requirements:
+Local CentOS ISO:
+ansible-core
+libssh-devel
+python3-devel
+
+Python (FOSS):
+ansible-pylibssh
+
+Ansible Galaxy (FOSS):
+cisco.ios
+
+
+-StigDeploy Requirements:
+Local CentOS ISO:
+java-25-openjdk
+
+
+
+-Installation Guide
+Prerequisites:
+Installed OS - CentOS or RHEL
+Installation disk for same - physical or ISO
+Application package
+	1 JAVA application file
+	3 Ansible Galaxy rpms
+	1 Ansible Galaxy YAML file
+	1 Python rpm
+
+Installation procedure:
+1. Mount CentOS installation disk
+	a. Insert physical disk or ISO to optical drive
+	b. $ mount /dev/sr0 /mnt
+	
+2. Create a local repo file pointing to the mounted media
+	a. vi /etc/yum.repos.d/rhel7dvd.repo
+		enabled=1
+		baseurl=file:///mnt/
+
+3. Install 4 CentOS ISO dependencies
+	a. $ dnf install ansible-core libssh-devel python3-devel java-25-openjdk
+
+4. Transfer prerequisite files to a directory on the target machine
+
+5. Install 3 Ansible dependencies
+	a. $ cd [prerequisite directory]
+	b. $ ansible-galaxy collection install requirements.yml
+
+6. Install 1 Python dependency
+	a. $ /usr/bin/python3 -m pip install [ansible-pylibssh filename]
+
+7. Run application
+	a. $ java -jar [application jar filename]
